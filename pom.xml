@@ -35,6 +35,11 @@
             <version>1.2.4</version>
         </dependency>
         <dependency>
+            <groupId>org.apache.hbase</groupId>
+            <artifactId>hbase-common</artifactId>
+            <version>1.2.4</version>
+        </dependency>
+        <dependency>
             <groupId>org.apache.hadoop</groupId>
             <artifactId>hadoop-common</artifactId>
             <version>2.7.3</version>
@@ -59,6 +64,7 @@
             <artifactId>spark-streaming_2.11</artifactId>
             <version>2.1.0</version>
         </dependency>
+
     </dependencies>
 
     <repositories>
