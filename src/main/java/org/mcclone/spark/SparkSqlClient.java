@@ -2,9 +2,10 @@ package org.mcclone.spark;
 
 import org.apache.spark.sql.Dataset;
 import org.apache.spark.sql.Row;
+import org.apache.spark.sql.SaveMode;
 import org.apache.spark.sql.SparkSession;
 
-import static org.apache.spark.sql.functions.col;
+import java.util.Properties;
 
 /**
  * Created by mcclone on 17-7-16.
@@ -18,15 +19,15 @@ public class SparkSqlClient {
                 .master("local")
                 .getOrCreate();
 
-        Dataset<Row> df = spark.read().json("src/main/resources/people.json");
-        df.printSchema();
-        df.show();
+        Properties connectionProperties = new Properties();
+        connectionProperties.put("user", "root");
+        connectionProperties.put("password", "root");
+        connectionProperties.put("driver", "com.mysql.jdbc.Driver");
 
-        Row row = df.filter(col("age").isNotNull()).first();
-        System.out.println(row.getAs("name").toString());
-
+        Dataset<Row> df = spark.read().json("hdfs://localhost:9000/user/mcclone/data/people.json");
         df.createOrReplaceTempView("people");
         Dataset<Row> sqlDF = spark.sql("SELECT sum(age) FROM people group by name");
         sqlDF.show();
+        sqlDF.write().mode(SaveMode.Append).jdbc("jdbc:mysql://localhost:3309/demo", "people", connectionProperties);
     }
 }
