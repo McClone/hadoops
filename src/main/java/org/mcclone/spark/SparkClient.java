@@ -19,8 +19,6 @@ public class SparkClient {
 
         JavaSparkContext sc = new JavaSparkContext(conf);
         JavaRDD<String> javaRDD = sc.parallelize(Arrays.asList("1", "2", "3", "4", "5"));
-        javaRDD.distinct().foreach(s -> {
-            System.out.println(s);
-        });
+        javaRDD.distinct().foreach(System.out::println);
     }
 }
