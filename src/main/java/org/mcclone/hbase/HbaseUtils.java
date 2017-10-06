@@ -41,8 +41,7 @@ public abstract class HbaseUtils {
     }
 
     public static Connection getConnection() throws IOException {
-        Configuration config = HBaseConfiguration.create();
-        return ConnectionFactory.createConnection(config);
+        return ConnectionFactory.createConnection(HBaseConfiguration.create());
     }
 
 }
