@@ -1,10 +1,9 @@
 package org.mcclone.spark;
 
-import org.apache.spark.SparkConf;
 import org.apache.spark.api.java.JavaRDD;
 import org.apache.spark.api.java.JavaSparkContext;
+import org.apache.spark.sql.SparkSession;
 
-import java.io.IOException;
 import java.util.Arrays;
 
 /**
@@ -12,13 +11,16 @@ import java.util.Arrays;
  */
 public class SparkClient {
 
-    public static void main(String[] args) throws IOException {
-        SparkConf conf = new SparkConf()
-                .setAppName("Simple Application")
-                .setMaster("local");
+    public static void main(String[] args) {
+        SparkSession spark = SparkSession
+                .builder()
+                .appName("SparkClient")
+                .getOrCreate();
 
-        JavaSparkContext sc = new JavaSparkContext(conf);
-        JavaRDD<String> javaRDD = sc.parallelize(Arrays.asList("1", "2", "3", "4", "5"));
-        javaRDD.distinct().foreach(System.out::println);
+        JavaSparkContext sc = new JavaSparkContext(spark.sparkContext());
+        JavaRDD<Integer> javaRDD = sc.parallelize(Arrays.asList(1, 2, 3, 4, 5));
+        long count = javaRDD.count();
+        System.out.println(count);
+        spark.stop();
     }
 }

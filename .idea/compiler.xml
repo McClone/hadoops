@@ -9,8 +9,5 @@
         <module name="hadoops" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="hadoops" target="1.8" />
-    </bytecodeTargetLevel>
   </component>
 </project>
