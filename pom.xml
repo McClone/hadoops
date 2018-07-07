@@ -83,6 +83,21 @@
             <artifactId>mysql-connector-java</artifactId>
             <version>6.0.6</version>
         </dependency>
+        <dependency>
+            <groupId>org.apache.kafka</groupId>
+            <artifactId>kafka_2.12</artifactId>
+            <version>1.1.0</version>
+        </dependency>
+        <!--<dependency>-->
+            <!--<groupId>org.apache.kafka</groupId>-->
+            <!--<artifactId>kafka-clients</artifactId>-->
+            <!--<version>1.1.0</version>-->
+        <!--</dependency>-->
+        <!--<dependency>-->
+            <!--<groupId>org.apache.kafka</groupId>-->
+            <!--<artifactId>kafka-streams</artifactId>-->
+            <!--<version>1.1.0</version>-->
+        <!--</dependency>-->
     </dependencies>
     <repositories>
         <repository>

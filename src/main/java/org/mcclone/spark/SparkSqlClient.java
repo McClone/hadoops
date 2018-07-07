@@ -24,6 +24,8 @@ public class SparkSqlClient {
         connectionProperties.put("password", "root");
         connectionProperties.put("driver", "com.mysql.jdbc.Driver");
 
+        Dataset<Row> jdbc = spark.read().format("jdbc").load();
+
         Dataset<Row> df = spark.read().json("hdfs://localhost:9000/user/mcclone/data/people.json");
         df.createOrReplaceTempView("people");
         Dataset<Row> sqlDF = spark.sql("SELECT sum(age) FROM people group by name");
