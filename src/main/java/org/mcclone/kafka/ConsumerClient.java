@@ -11,7 +11,7 @@ public class ConsumerClient {
 
     public static void main(String[] args) {
         Properties props = new Properties();
-        props.put("bootstrap.servers", "localhost:9092");
+        props.put("bootstrap.servers", "dev:9092");
         props.put("group.id", "test-consumer-group");
         props.put("enable.auto.commit", "false");
         props.put("auto.commit.interval.ms", "1000");
